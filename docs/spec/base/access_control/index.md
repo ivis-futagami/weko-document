@@ -53,7 +53,6 @@
     - [ログ管理](#ログ管理)
   - [メンテナンス](#メンテナンス)
 
-1画面1ファイルに分割する
 
 ## 検索画面
 
@@ -61,11 +60,7 @@
 
 エンドポイント: `/search`
 
-### インデックスツリー
-
-エンドポイント: `/search?search_type=2&q=<インデックスID>`
-
-#### インデックス閲覧可否
+### インデックス
 
 | ロール \ インデックス  |   親インデックス: 閲覧可<br>インデックス: 公開  | 親インデックス: 閲覧可 <br> インデックス: 非公開  | 親インデックス: 閲覧不可 |
 | --------------------  | -----------  | ------------ |------------ |
@@ -168,6 +163,15 @@
 ## ワークスペース画面
 
 エンドポイント: `/workspace`
+
+Here is a simple footnote[^1].
+
+A footnote can also have multiple lines[^2].
+
+[^1]: My reference.
+[^2]: To add line breaks within a footnote, prefix new lines with 2 spaces.
+  This is a second line.
+
 
 
 ## 管理画面
