@@ -96,24 +96,23 @@
 
 ### インデックス閲覧
 
-| 親インデックス閲覧可否(※1)<br>インデックス公開状態(※2)<br>閲覧権限の有無(※3) | システム<br>管理者 | リポジトリ<br>管理者 | コミュニティ<br>管理者 | 登録ユーザー | 一般ユーザー | ゲスト(未ログイン) |
-| ---------------------------------------------------------------------------- | ------------------ | -------------------- | ---------------------- | ------------ | ------------ | ------------------ |
-| 親インデックス: 閲覧可 <br> インデックス: 公開 <br>閲覧権限: あり            | ○                  | ○                    | ○                      | ○            | ○            | ○                  |
-| 親インデックス: 閲覧可 <br> インデックス: 公開 <br>閲覧権限: なし            | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧可 <br> インデックス: 非公開 <br>閲覧権限: あり          | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧可 <br> インデックス: 非公開 <br>閲覧権限: なし          | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧不可<br> インデックス: 公開 <br>閲覧権限: あり           | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧不可<br> インデックス: 公開<br>閲覧権限: なし            | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧不可<br> インデックス: 非公開<br>閲覧権限: あり          | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
-| 親インデックス: 閲覧不可<br> インデックス: 非公開<br>閲覧権限: なし          | ○                  | ○                    | △(※4)                  | ✕            | ✕            | ✕                  |
+以下の 3 つの条件をすべて満たすインデックスの閲覧可否
 
-※1「親インデックス:閲覧可」とは、親インデックスが Root Index である、またはユーザが親インデックスを閲覧可の状態を指します。
+1.  管理画面の「インデックスツリー管理 > ツリー編集 > インデックス編集 > 公開」で「公開」にチェックがあり、「公開日」が空または過去の日付に設定されている
+2.  管理画面の「インデックスツリー管理 > ツリー編集 > インデックス編集 > 閲覧権限」でユーザの持つロールまたはグループが「権限あり」に設定されている
+3.  親インデックスが Root Index である、またはユーザが親インデックスを閲覧可能である
 
-※2「インデックス:公開」とは、管理画面の「インデックスツリー管理 > ツリー編集 > インデックス編集 > 公開」で「公開」にチェックがあり、「公開日」が空または過去の日付に設定されている状態を指します。
+| ロール   | システム<br>管理者 | リポジトリ<br>管理者 | コミュニティ<br>管理者 | 登録ユーザー | 一般ユーザー | ゲスト(未ログイン) |
+| -------- | :----------------: | :------------------: | :--------------------: | :----------: | :----------: | :----------------: |
+| 閲覧可否 |         ○          |          ○           |           ○            |      ○       |      ○       |         ○          |
 
-※3「閲覧権限あり」とは、管理画面の「インデックスツリー管理 > ツリー編集 > インデックス編集 > 閲覧権限」でユーザの持つロールまたはグループが「権限あり」に設定されている状態を指します。
+上記の 3 条件のうち、1 つでも満たさないインデックスの閲覧可否
 
-※4 コミュニティ管理者は、コミュニティに属するインデックスのみ閲覧可能です。
+| ロール   | システム<br>管理者 | リポジトリ<br>管理者 | コミュニティ<br>管理者 | 登録ユーザー | 一般ユーザー | ゲスト(未ログイン) |
+| -------- | :----------------: | :------------------: | :--------------------: | :----------: | :----------: | :----------------: |
+| 閲覧可否 |         ○          |          ○           |         △(※1)          |      ✕       |      ✕       |         ✕          |
+
+※1: コミュニティ管理者は、管理するコミュニティに属するインデックスのみ閲覧可能です。
 
 ### インデックス編集
 
@@ -227,13 +226,13 @@ API を利用可能なロール
 
 アクセストークンに必要なスコープ
 
-`[GET] /api/\<version>/records`
+`[GET] /api/<version>/records`
 
-`[GET] /api/\<version>/records/<pid_value>`
+`[GET] /api/<version>/records/<pid_value>`
 
-`[GET] /api/\<version>/records/<pid_value>/stats`
+`[GET] /api/<version>/records/<pid_value>/stats`
 
-`[POST] /api/\<version>/records/list`
+`[POST] /api/<version>/records/list`
 
 `[GET] /api/index/`
 
@@ -243,38 +242,38 @@ API を利用可能なロール
 
 ### ファイル
 
-`[GET] /api/\<version>/ranking/<pid_value>/files`
+`[GET] /api/<version>/ranking/<pid_value>/files`
 
-`[GET] /api/\<version>/records/<pid_value>/files/<filename>`
+`[GET] /api/<version>/records/<pid_value>/files/<filename>`
 
-`[GET] /api/\<version>/records/<pid_value>/files/<filename>/stats`
+`[GET] /api/<version>/records/<pid_value>/files/<filename>/stats`
 
-`[GET] /api/\<version>/records/<pid_value>/files/all`
+`[GET] /api/<version>/records/<pid_value>/files/all`
 
-`[POST] /api/\<version>/records/<pid_value>/files/selected`
+`[POST] /api/<version>/records/<pid_value>/files/selected`
 
-`[GET] /api/\<version>/ranking/<ranking_type>`
+`[GET] /api/<version>/ranking/<ranking_type>`
 
 ### インデックス
 
 #### API を利用可能なロール
 
-| API エンドポイント                                 | システム<br>管理者 | リポジトリ<br>管理者 | コミュニティ<br>管理者 | 登録ユーザー | 一般ユーザー | ゲスト<br>(未ログイン) |
+| ロール                                             | システム<br>管理者 | リポジトリ<br>管理者 | コミュニティ<br>管理者 | 登録ユーザー | 一般ユーザー | ゲスト<br>(未ログイン) |
 | -------------------------------------------------- | ------------------ | -------------------- | ---------------------- | ------------ | ------------ | ---------------------- |
 | [GET] /api/\<version>/tree                         | ○                  | ○                    | ○                      | ○            | ○            | ✕                      |
 | [GET] /api/\<version>/tree/<index_id>              | ○                  | ○                    | ○                      | ○            | ○            | ✕                      |
 | [GET] /api/\<version>/tree/index                   | ○                  | ○                    | ○                      | ○            | ○            | ○                      |
 | [GET] /api/\<version>/tree/index/<index_id>        | ○                  | ○                    | ○                      | ○            | ○            | ○                      |
 | [GET] /api/\<version>/tree/index/<index_id>/parent | ○                  | ○                    | ○                      | ○            | ○            | ○                      |
-| [POST] /api/\<version>/tree/index                  | ○                  | ○                    | ○                  | ✕            | ✕            | ✕                      |
-| [PUT] /api/\<version>/tree/index/<index_id>        | ○                  | ○                    | ○                  | ✕            | ✕            | ✕                      |
-| [DELETE] /api/\<version>/tree/index/<index_id>     | ○                  | ○                    | ○                  | ✕            | ✕            | ✕                      |
+| [POST] /api/\<version>/tree/index                  | ○                  | ○                    | ○                      | ✕            | ✕            | ✕                      |
+| [PUT] /api/\<version>/tree/index/<index_id>        | ○                  | ○                    | ○                      | ✕            | ✕            | ✕                      |
+| [DELETE] /api/\<version>/tree/index/<index_id>     | ○                  | ○                    | ○                      | ✕            | ✕            | ✕                      |
 
 ※1: コミュニティ管理者は、所属するコミュニティのインデックスのみを操作可能です。
 
 #### アクセストークンに必要なスコープ
 
-| API エンドポイント                                 | index: read | index:create | index:update | index:delete |
+| スコープ                                           | index: read | index:create | index:update | index:delete |
 | -------------------------------------------------- | ----------- | ------------ | ------------ | ------------ |
 | [GET] /api/\<version>/tree                         | ○           |              |              |              |
 | [GET] /api/\<version>/tree/<index_id>              | ○           |              |              |              |
@@ -303,31 +302,31 @@ API を利用可能なロール
 
 ### 著者
 
-`[GET] /api/\<version>/authors`
+`[GET] /api/<version>/authors`
 
-`[POST] /api/\<version>/authors`
+`[POST] /api/<version>/authors`
 
-`[DELETE] /api/\<version>/authors/<identifier>`
+`[DELETE] /api/<version>/authors/<identifier>`
 
-`[GET] /api/\<version>/authors/count`
+`[GET] /api/<version>/authors/count`
 
 ### リクエストメール
 
-`[GET] /api/\<version>/captcha/image`
+`[GET] /api/<version>/captcha/image`
 
-`[GET] /api/\<version>/captcha/validate`
+`[GET] /api/<version>/captcha/validate`
 
-`[POST] /api/\<version>/records/<pid_value>/request-mail`
+`[POST] /api/<version>/records/<pid_value>/request-mail`
 
 ### ログイン
 
-`[POST] /api/\<version>/login`
+`[POST] /api/<version>/login`
 
-`[POST] /api/\<version>/logout`
+`[POST] /api/<version>/logout`
 
 ### OA ステータス
 
-`[POST] /api/\<version>/oa_status/callback`
+`[POST] /api/<version>/oa_status/callback`
 
 ### SWORD API
 
@@ -343,16 +342,16 @@ API を利用可能なロール
 
 ### 制限公開機能
 
-`[GET] /api/\<version>/workflow/activities`
+`[GET] /api/<version>/workflow/activities`
 
-`[POST] /api/\<version>/workflow/activities/{activity_id}/approve`
+`[POST] /api/<version>/workflow/activities/{activity_id}/approve`
 
-`[POST] /api/\<version>/workflow/activities/{activity_id}/throw-out`
+`[POST] /api/<version>/workflow/activities/{activity_id}/throw-out`
 
-`[GET] /api/\<version>/records/{pid}/files/{filename}/terms`
+`[GET] /api/<version>/records/{pid}/files/{filename}/terms`
 
-`[POST] /api/\<version>/records/{pid}/files/{filename}/application`
+`[POST] /api/<version>/records/{pid}/files/{filename}/application`
 
-`[POST] /api/\<version>/workflow/activities/{activity_id}/application`
+`[POST] /api/<version>/workflow/activities/{activity_id}/application`
 
-`[GET] /api/\<version>/records/{pid}/need-restricted-access`
+`[GET] /api/<version>/records/{pid}/need-restricted-access`
